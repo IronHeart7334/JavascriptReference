@@ -1,10 +1,11 @@
-function sprite(map, colors) {
+// The Sprite Class
+function Sprite(map, colors) {
 	this.map = map;
 	this.colors = ["rgb(0, 0, 0)"];
 	this.colors = this.colors.concat(colors);
 }
 
-sprite.prototype = {
+Sprite.prototype = {
 
 	draw:function(x, y, size){
 		var canvas = document.getElementById("canvas");
