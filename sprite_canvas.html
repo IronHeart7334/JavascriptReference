@@ -1,0 +1,29 @@
+<!doctype html>
+
+<html>
+	<head>
+		<script src="sprite_function.js"></script>
+	</head>
+	
+	<body>
+		<canvas width="500px" height="500px" id="canvas"></canvas>
+	</body>
+	<script>
+		var spr = new sprite(
+			[
+				[0, 0, 0, 0, 1],
+				[0, 2, 0, 2, 0],
+				[0, 0, 1, 0, 0],
+				[0, 3, 0, 0, 0],
+				[1, 0, 0, 0, 2]
+			],
+			[
+				"rgb(255, 0, 0)",
+				"rgb(0, 255, 0)",
+				"rgb(0, 0, 255)"
+			]
+		);
+		
+		spr.draw(100, 100, 50)
+	</script>
+</html>
