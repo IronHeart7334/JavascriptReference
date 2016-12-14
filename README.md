@@ -1,2 +1,1 @@
-# test
-test
+A basic sprite creator
