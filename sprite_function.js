@@ -1,7 +1,11 @@
 var doc;
 var p;
+var pixels = [];
+var w;
+var h;
 
 // The Sprite Class
+// clean up this mess!
 function Sprite(map, colors) {
 	this.map = map;
 	this.colors = ["rgb(0, 0, 0)"];
@@ -11,8 +15,8 @@ function Sprite(map, colors) {
 // clean up later
 Sprite.construct = function(){
     doc = document.body;
-    var numColumns = parseInt(prompt("How many columns do you want your sprite to have?"));
-    var numRows = parseInt(prompt("What about rows?"));
+    w = parseInt(prompt("How many columns do you want your sprite to have?"));
+    h = parseInt(prompt("What about rows?"));
     
     p = new ProtoSprite();
     
@@ -29,12 +33,21 @@ Sprite.construct = function(){
     
     // implement removeColor later
     
-    var div;
-    var pix;
+    var genSprite = document.createElement("div");
+    genSprite.style.position = "absolute";
+    genSprite.style.left = "90%";
+    genSprite.style.top = "0px";
+    genSprite.style.height = "50px";
+    genSprite.style.width = "10%";
+    genSprite.style.backgroundColor = "red";
+    genSprite.innerHTML = "Generate Sprite";
+    genSprite.onclick = p.generateCode.bind(p);
+    doc.appendChild(genSprite);
     
-    for (var column = 0; column < numColumns; column ++){
-        for (var row = 0; row < numRows; row ++){
-            pix = new Pixel(column * 50, row * 50 + 50);
+    var pix;
+    for (var column = 0; column < w; column ++){
+        for (var row = 0; row < h; row ++){
+            pix = new Pixel(column, row);
         }
     }
 }
@@ -65,21 +78,43 @@ ProtoSprite.prototype = {
         var b = parseInt(prompt("How much blue?"));
         this.colors.push("rgb(" + r + ", " + g + ", " + b + ")");
         console.log(this.colors);
+    },
+    generateCode:function(){
+        var map = [];
+        var row = [];
+        for(var i = 1; i <= w; i++){
+            row.push(0);  
+        }
+        console.log(map);
+        for(var i = 1; i <= h; i++){
+            map.push(row);
+            console.log(map);
+        }
+        console.log(map);
+        var curPix;
+        for(var i = 0; i < pixels.length; i++){
+            curPix = pixels[i];
+            console.log("Map[" + curPix.y +"][" + curPix.x + "] = " + curPix.colorNum + ";");
+            map[curPix.y][curPix.x] = curPix.colorNum;
+            console.log(map[curPix.y][curPix.x]);
+        }
+        console.log(map);
     }
 }
 
-function Pixel(x, y){
-    this.x = x;
-    this.y = y;
+function Pixel(baseX, baseY){
+    this.x = baseX;
+    this.y = baseY;
     this.colorNum = 1;
+    pixels.push(this);
     this.createDiv();
 }
 Pixel.prototype = {
     createDiv:function(){
         div = document.createElement("div");
         div.style.position = "absolute";
-        div.style.left = this.x + "px";
-        div.style.top = this.y + "px";
+        div.style.left = this.x * 50 + "px";
+        div.style.top = this.y * 50 + 50 + "px";
         div.style.height = "50px";
         div.style.width = "50px";
         div.style.backgroundColor = p.colors[this.colorNum];
@@ -89,12 +124,10 @@ Pixel.prototype = {
     },
     changeColor:function(){
         this.colorNum += 1;
-        console.log(this.colorNum);
         if(this.colorNum == p.colors.length){
             this.colorNum = 0;
         }
         var div = document.getElementById(this.x + " " + this.y);
-        div.backgroundColor = p.colors[this.colorNum];
-        console.log(div);
+        div.style.backgroundColor = p.colors[this.colorNum];
     }
 }
