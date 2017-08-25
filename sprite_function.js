@@ -80,14 +80,15 @@ ProtoSprite.prototype = {
         console.log(this.colors);
     },
     generateCode:function(){
-        var map = [];
-        var row = [];
-        for(var i = 1; i <= w; i++){
-            row.push(0);  
+        var map = new Array(h);
+        var row = new Array(w);
+        for(var i = 0; i < w; i++){
+            row[i] = 0;  
         }
         console.log(map);
-        for(var i = 1; i <= h; i++){
-            map.push(row);
+        for(var i2 = 0; i2 < h; i2++){
+            console.log("Row: " + row);
+            map[i2] = row;
             console.log(map);
         }
         console.log(map);
@@ -97,6 +98,11 @@ ProtoSprite.prototype = {
             console.log("Map[" + curPix.y +"][" + curPix.x + "] = " + curPix.colorNum + ";");
             map[curPix.y][curPix.x] = curPix.colorNum;
             console.log(map[curPix.y][curPix.x]);
+        }
+        for(var i = 0; i < map.length; i++){
+        	for(var i2 = 0; i2 < map[0].length; i2++){
+        		console.log(map[i][i2]);
+        	}
         }
         console.log(map);
     }
