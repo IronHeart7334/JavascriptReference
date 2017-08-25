@@ -1,3 +1,5 @@
+// clean up this mess!
+// document better
 var doc;
 var p;
 var pixels = [];
@@ -5,14 +7,13 @@ var w;
 var h;
 
 // The Sprite Class
-// clean up this mess!
 function Sprite(map, colors) {
 	this.map = map;
-	this.colors = ["rgb(0, 0, 0)"];
-	this.colors = this.colors.concat(colors);
+	//this.colors = ["rgb(0, 0, 0)"];
+	//this.colors = this.colors.concat(colors);
+	this.colors = colors;
 }
 
-// clean up later
 Sprite.construct = function(){
     doc = document.body;
     w = parseInt(prompt("How many columns do you want your sprite to have?"));
@@ -81,30 +82,23 @@ ProtoSprite.prototype = {
     },
     generateCode:function(){
         var map = new Array(h);
-        var row = new Array(w);
-        for(var i = 0; i < w; i++){
-            row[i] = 0;  
-        }
-        console.log(map);
+        
         for(var i2 = 0; i2 < h; i2++){
-            console.log("Row: " + row);
+            var row = new Array(w);
+            for(var i = 0; i < w; i++){
+                row[i] = 0;  
+            }
             map[i2] = row;
-            console.log(map);
         }
-        console.log(map);
+        
         var curPix;
         for(var i = 0; i < pixels.length; i++){
             curPix = pixels[i];
-            console.log("Map[" + curPix.y +"][" + curPix.x + "] = " + curPix.colorNum + ";");
             map[curPix.y][curPix.x] = curPix.colorNum;
-            console.log(map[curPix.y][curPix.x]);
         }
-        for(var i = 0; i < map.length; i++){
-        	for(var i2 = 0; i2 < map[0].length; i2++){
-        		console.log(map[i][i2]);
-        	}
-        }
-        console.log(map);
+        
+        var n = new Sprite(map, this.colors);
+        n.draw(0, 600, 10);
     }
 }
 
