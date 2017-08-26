@@ -5,27 +5,10 @@
 		<script src="sprite_function.js"></script>
 	</head>
 	
-	<body onload="Sprite.construct()">
+	<body>
+		<div style="position:absolute; left:0px; top:0px; height:10%; width:33%; background-color:blue;" id="createSprite" onclick="construct()"><p>Create a new sprite</p></div>
+		<div style="position:absolute; left:33%; top:0px; height:10%; width:33%; background-color:yellow;" id="addColor"><p>Add a color</p></div>
+		<div style="position:absolute; left:66%; top:0px; height:10%; width:33%; background-color:red;" id="genSprite"><p>Generate sprite</p></div>
 		<canvas width="500px" height="1000px" id="canvas"></canvas>
 	</body>
-	<script>
-	    /*
-		var spr = new Sprite(
-			[
-				[0, 0, 0, 0, 1],
-				[0, 2, 0, 2, 0],
-				[0, 0, 1, 0, 0],
-				[0, 3, 0, 0, 0],
-				[1, 0, 0, 0, 2]
-			],
-			[
-				"rgb(255, 0, 0)",
-				"rgb(0, 255, 0)",
-				"rgb(0, 0, 255)"
-			]
-		);
-		
-		spr.draw(100, 100, 50)
-		*/
-	</script>
 </html>
