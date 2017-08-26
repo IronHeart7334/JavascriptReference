@@ -26,7 +26,8 @@ function Sprite(map, colors) {
 }
 Sprite.prototype = {
 	draw:function(x, y, size){
-		var canvas = document.getElementById("canvas").getContext("2d");
+		var canvas = document.getElementById("canvas");
+		canvas = canvas.getContext("2d");
         for (var row = 0; row < this.map.length; row++) {
             for (var column = 0; column < this.map[row].length; column++){
             	if (this.map[row][column] != 0){
@@ -35,6 +36,19 @@ Sprite.prototype = {
             	}
             }	
         }
+    },
+    logData:function(){
+    	var msg = "new Sprite([";
+    	for(var line = 0; line < this.map.length; line++){
+    		msg += "[";
+    		msg += this.map[line];
+    		msg += "], "
+    	}
+    	msg = msg.slice(0, -2);
+    	msg += "], [";
+    	msg += this.colors;
+    	msg += "]);";
+    	console.log(msg);
     }	
 }
 
@@ -66,8 +80,8 @@ ProtoSprite.prototype = {
         }
         this.colors.shift();
         var n = new Sprite(map, this.colors);
-        n.draw(200, 600, 100);
-        for(var pixel = 1; pixel < this.pixels.length; pixel++){
+        n.logData();
+        for(var pixel = 0; pixel < this.pixels.length; pixel++){
         	this.pixels[pixel].deleteDiv();
         }
     }
