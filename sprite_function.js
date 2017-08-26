@@ -66,18 +66,12 @@ ProtoSprite.prototype = {
         }
         this.colors.shift();
         var n = new Sprite(map, this.colors);
-        n.draw(0, 600, 10);
+        n.draw(200, 600, 100);
         for(var pixel = 1; pixel < this.pixels.length; pixel++){
         	this.pixels[pixel].deleteDiv();
         }
     }
 }
-
-
-
-
-
-
 
 function Pixel(baseX, baseY, assignTo){
     this.x = baseX;
@@ -89,12 +83,17 @@ function Pixel(baseX, baseY, assignTo){
 }
 Pixel.prototype = {
     createDiv:function(){
+    	var c = document.getElementById("canvas");
+    	var cw = parseInt(c.style.width.slice(0, -1)) / 100 * window.innerWidth;
+    	var ch = parseInt(c.style.height.slice(0, -1)) / 100 * window.innerHeight
+    	var w = cw / this.assignedTo.w;
+    	var h = ch / this.assignedTo.h;
         div = document.createElement("div");
         div.style.position = "absolute";
-        div.style.left = this.x * 50 + "px";
-        div.style.top = this.y * 50 + 50 + "px";
-        div.style.height = "50px";
-        div.style.width = "50px";
+        div.style.left = this.x * w + "px";
+        div.style.top = this.y * h + ch / 10 + "px";
+        div.style.width = w + "px";
+        div.style.height = h + "px";
         div.style.backgroundColor = this.assignedTo.colors[this.colorNum];
         div.id = this.x + " " + this.y;
         div.onclick = this.changeColor.bind(this);
@@ -110,7 +109,6 @@ Pixel.prototype = {
     },
     deleteDiv:function(){
     	var div = document.getElementById(this.x + " " + this.y);
-    	console.log(div.parentNode.childNodes);
     	div.parentNode.removeChild(div);
     }
 }
