@@ -1,14 +1,15 @@
-import {isInstanceOf, isType, TYPES} from "../util/paramVerify.js";
+import {
+    notNull,
+    verifyClass, 
+    verifyType, 
+    TYPES
+} from "../util/paramVerify.js";
 
 
 export class Component{
     constructor(id){
-        isType(id, TYPES.string);
-        /*
-        if(id === null || id === undefined){
-            throw new Error("id is null");
-        }*/
-        id = id.toString();
+        verifyType(id, TYPES.string);
+        
         if(!id.startsWith("#")){
             throw new Error("id must start with a '#'");
         }
@@ -29,8 +30,9 @@ export class Component{
 }
 
 let c = new Component("#noexist");
-isInstanceOf(c, "Component");
-isInstanceOf(c, "Object");
-//isInstanceOf(c, "no exist");
+verifyClass(c, "Component");
+verifyClass(c, "Object");
+verifyClass(c, Component);
+//verifyClass(c, "no exist");
 
 //let c2 = new Component(100);
