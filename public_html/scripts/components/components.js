@@ -50,19 +50,53 @@ class Component{
 class Container extends Component{
     constructor(id){
         super(id);
+        //this.setGrid(1, 1);
+        this.rows = 1;
+        this.cols = 1;
+        this.children = [];
+    }
+    
+    setGrid(rows, cols){
+        //todo: make this callable after adding components
+        verifyType(rows, TYPES.number);
+        verifyType(cols, TYPES.number);
+        
+        this.rows = rows;
+        this.cols = cols;
+        
+        let currRow;
+        let curCell;
+        for(let row = 0; row < rows; row++){
+            currRow = $(`<div id=\"${this.id + "-row-" + row}\" class=\"row\"></div>`);
+            this.select().append(currRow);
+            for(let col = 0; col < cols; col++){
+                curCell = $(`<div id=\"${this.id + "-" + row + "-" + col}\" class=\"col\"></div>`);
+                currRow.append(curCell);
+            }
+        }
+    }
+    
+    selectCell(row, col){
+        //todo add checking
+        return $(`#${this.id}-${row}-${col}`);
     }
     
     addChild(component){
         verifyClass(component, Component);
-        console.log(this.select().length);
-        this.select().append(component.select());
+        let childCount = this.children.length;
+        let row = Number.parseInt(childCount / this.cols);
+        let col = childCount % this.cols;
+        this.children.push(component);
+        //console.log(row, col);
+        this.selectCell(row, col).append(component.select());
     }
 };
 
 function test(){
     let main = new Container("body");
     main.setColor("blue");
-    main.setSize(100, 100);
+    //main.setSize(100, 100);
+    main.setGrid(2, 4);
     
     let c = new Component("#noexist");
     c.setColor("green");
@@ -76,6 +110,13 @@ function test(){
     //let c2 = new Component(100);
     
     main.addChild(c);
+    
+    for(let i = 0; i < 7; i++){
+        c = new Component(`dummy-${i}`);
+        c.setColor(`rgb(0, 0, ${10 * i})`);
+        c.setSize(50, 50);
+        main.addChild(c);
+    }
 }
 
 export {
