@@ -19,7 +19,7 @@
  * Used by verifyType.
  * Acts as an enum so that types are refered to in a consistant way
  */
-export const TYPES = {
+const TYPES = {
     boolean : typeof true,
     number : typeof 3.14,
     string : typeof "hello?",
@@ -31,7 +31,7 @@ export const TYPES = {
 /*
  * Checks if the given value is null or undefined
  */
-export function notNull(val){
+function notNull(val){
     if(val === null || val === undefined){
         throw new Error("Value has not been initialized");
     }
@@ -53,7 +53,7 @@ export function notNull(val){
  *  verifyType(5, "number"); //may cause inconsistancies. Use TYPE.number
  *  verifyType(myObj, myClass); //use verifyClass instead
  */
-export function verifyType(val, type){
+function verifyType(val, type){
     notNull(val);
     notNull(type);
     
@@ -71,7 +71,7 @@ export function verifyType(val, type){
  * 
  * Note that this function DOES check if the given val is a subclass of the given className
  */
-export function verifyClass(val, className){
+function verifyClass(val, className){
     notNull(val);
     notNull(className);
     
@@ -95,3 +95,10 @@ export function verifyClass(val, className){
     
     return true;
 }
+
+export {
+    TYPES,
+    notNull,
+    verifyType,
+    verifyClass
+};
