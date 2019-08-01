@@ -22,7 +22,7 @@ class Component{
             $("body").append(newEle);
             selection = this.select();
         }
-        
+        //selection.addClass("w-100 h-100");
         
         this.element = document.getElementById(id);
         //console.log(this.element);
@@ -68,9 +68,11 @@ class Container extends Component{
         let curCell;
         for(let row = 0; row < rows; row++){
             currRow = $(`<div id=\"${this.id + "-row-" + row}\" class=\"row\"></div>`);
+            //currRow.addClass("w-100 h-100");
             this.select().append(currRow);
             for(let col = 0; col < cols; col++){
                 curCell = $(`<div id=\"${this.id + "-" + row + "-" + col}\" class=\"col\"></div>`);
+                //curCell.addClass("w-100 h-100");
                 currRow.append(curCell);
             }
         }
