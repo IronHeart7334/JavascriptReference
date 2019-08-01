@@ -45,25 +45,29 @@ class Component{
     select(){
         return $("#" + this.id);
     }
+    
+    toString(){
+        return `Component#${this.id}`;
+    }
 };
 
 class Container extends Component{
-    constructor(id){
+    constructor(id, rows, cols){
         super(id);
-        //this.setGrid(1, 1);
-        this.rows = 1;
-        this.cols = 1;
-        this.children = [];
-    }
-    
-    setGrid(rows, cols){
-        //todo: make this callable after adding components
         verifyType(rows, TYPES.number);
         verifyType(cols, TYPES.number);
+        if(rows <= 0){
+            throw new Error("row count must be larger than 0");
+        }
+        if(cols <= 0){
+            throw new Error("col count must be larger than 0");
+        }
         
         this.rows = rows;
         this.cols = cols;
+        this.children = [];
         
+        //create the new grid
         let currRow;
         let curCell;
         for(let row = 0; row < rows; row++){
@@ -79,26 +83,38 @@ class Container extends Component{
     }
     
     selectCell(row, col){
-        //todo add checking
-        return $(`#${this.id}-${row}-${col}`);
+        if(row < 0 || row >= this.rows){
+            throw new Error(`Invalid row: ${row}. Must be between 0 and ${this.rows - 1}`);
+        }
+        if(col < 0 || col >= this.cols){
+            throw new Error(`Invalid col: ${col}. Must be between 0 and ${this.cols - 1}`);
+        }
+        let selection = $(`#${this.id}-${row}-${col}`);
+        if(selection.length === 0){
+            throw new Error(`Cell ${row}, ${col} does not exist.`);
+        }
+        return selection;
     }
     
     addChild(component){
         verifyClass(component, Component);
         let childCount = this.children.length;
+        if(childCount + 1 > this.rows * this.cols){
+            throw new Error("Cannot add " + component + ": grid is full");
+        }
+        
         let row = Number.parseInt(childCount / this.cols);
         let col = childCount % this.cols;
         this.children.push(component);
-        //console.log(row, col);
+        
         this.selectCell(row, col).append(component.select());
     }
 };
 
 function test(){
-    let main = new Container("body");
+    let main = new Container("body", 2, 4);
     main.setColor("blue");
     //main.setSize(100, 100);
-    main.setGrid(2, 4);
     
     let c = new Component("#noexist");
     c.setColor("green");
