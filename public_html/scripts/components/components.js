@@ -130,6 +130,11 @@ class Button extends Component{
         sel.click(this.click.bind(this));
     }
     
+    addOnClick(f){
+        verifyType(f, TYPES.function);
+        this.onClick.push(f);
+    }
+    
     click(){
         this.onClick.forEach((f)=>{
             f();
