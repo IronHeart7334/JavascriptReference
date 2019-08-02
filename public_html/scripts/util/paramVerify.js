@@ -96,9 +96,27 @@ function verifyClass(val, className){
     return true;
 }
 
+/*
+ * Returns the given parameter,
+ * converted to an array if it
+ * is not one already
+ */
+function toArray(items){
+    let ret = [];
+    if(items !== null && items !== undefined){
+        if(Array.isArray(items)){
+            ret = items;
+        } else {
+            ret.push(items);
+        }
+    }
+    return ret;
+}
+
 export {
     TYPES,
     notNull,
     verifyType,
-    verifyClass
+    verifyClass,
+    toArray
 };

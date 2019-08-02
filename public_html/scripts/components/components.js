@@ -2,7 +2,8 @@ import {
     notNull,
     verifyClass, 
     verifyType, 
-    TYPES
+    TYPES,
+    toArray
 } from "../util/paramVerify.js";
 
 
@@ -82,7 +83,7 @@ class Container extends Component{
             this.select().append(currRow);
             for(let col = 0; col < cols; col++){
                 curCell = $(`<div id=\"${this.id + "-" + row + "-" + col}\" class=\"col\"></div>`);
-                //curCell.addClass("w-100 h-100");
+                //curCell.addClass("flex-grow-1");
                 currRow.append(curCell);
             }
         }
@@ -117,6 +118,25 @@ class Container extends Component{
     }
 };
 
+class Button extends Component{
+    constructor(id, text, functions){
+        super(id);
+        verifyType(text, TYPES.string);
+        this.onClick = toArray(functions);
+        
+        let sel = this.select();
+        sel.addClass("btn btn-primary");
+        sel.append(`<p>${text}</p>`);
+        sel.click(this.click.bind(this));
+    }
+    
+    click(){
+        this.onClick.forEach((f)=>{
+            f();
+        });
+    }
+}
+
 function test(){
     let main = new Container("body", 2, 4);
     main.setColor("blue");
@@ -135,16 +155,21 @@ function test(){
     
     main.addChild(c);
     
-    for(let i = 0; i < 7; i++){
+    for(let i = 0; i < 6; i++){
         c = new Component(`dummy-${i}`);
         c.setColor(`rgb(0, 0, ${10 * i})`);
         c.setSize(50, 50);
         main.addChild(c);
     }
+    
+    let b = new Button("button", "Click me!", ()=>console.log("hi"));
+    b.setSize(50, 50);
+    main.addChild(b);
 }
 
 export {
     Component,
     Container,
+    Button,
     test
 }
