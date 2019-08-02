@@ -56,6 +56,7 @@ class Container extends Component{
         super(id);
         verifyType(rows, TYPES.number);
         verifyType(cols, TYPES.number);
+        
         if(rows <= 0){
             throw new Error("row count must be larger than 0");
         }
@@ -67,12 +68,17 @@ class Container extends Component{
         this.cols = cols;
         this.children = [];
         
+        this.select()
+            .css("align-items", "center")
+            .css("display", "flex")
+            .css("flex-wrap", "wrap");
+        
         //create the new grid
         let currRow;
         let curCell;
         for(let row = 0; row < rows; row++){
             currRow = $(`<div id=\"${this.id + "-row-" + row}\" class=\"row\"></div>`);
-            //currRow.addClass("w-100 h-100");
+            currRow.addClass("w-100");
             this.select().append(currRow);
             for(let col = 0; col < cols; col++){
                 curCell = $(`<div id=\"${this.id + "-" + row + "-" + col}\" class=\"col\"></div>`);
