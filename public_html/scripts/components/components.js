@@ -68,22 +68,17 @@ class Container extends Component{
         this.rows = rows;
         this.cols = cols;
         this.children = [];
-        /*
-        this.select()
-            .css("align-items", "center")
-            .css("display", "flex")
-            .css("flex-wrap", "wrap");
-        */
+        
         //create the new grid
         let currRow;
         let curCell;
         for(let row = 0; row < rows; row++){
             currRow = $(`<div id=\"${this.id + "-row-" + row}\" class=\"row\"></div>`);
-            currRow.addClass("w-100").addClass("justify-content-around");//.addClass("d-flex").addClass("flex-column");
+            currRow.addClass("w-100").addClass("justify-content-around").addClass("flex-grow-1");
             this.select().append(currRow);
             for(let col = 0; col < cols; col++){
                 curCell = $(`<div id=\"${this.id + "-" + row + "-" + col}\" class=\"col\"></div>`);
-                //curCell.addClass("flex-grow-1");
+                curCell.addClass("flex-grow-1").css("align-items", "center").css("display", "flex");
                 currRow.append(curCell);
             }
         }
@@ -145,7 +140,6 @@ class Button extends Component{
 function test(){
     let main = new Container("body", 2, 4);
     main.setColor("blue");
-    //main.setSize(100, 100);
     
     let c = new Component("#noexist");
     c.setColor("green");
@@ -168,7 +162,7 @@ function test(){
     }
     
     let b = new Button("button", "Click me!", ()=>console.log("hi"));
-    b.setSize(50, 50);
+    //b.setSize(50, 50);
     main.addChild(b);
 }
 
