@@ -1,3 +1,10 @@
 html,body {
   height: 100%;
 }
+
+/*
+can I make this say something like
+.grid-layout-row{
+    apply classes w-100, justify-content-around, flex-grow-1?
+}
+*/

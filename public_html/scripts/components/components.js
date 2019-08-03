@@ -23,7 +23,6 @@ class Component{
             $("body").append(newEle);
             selection = this.select();
         }
-        //selection.addClass("w-100 h-100");
         
         this.element = document.getElementById(id);
         //console.log(this.element);
@@ -73,12 +72,20 @@ class Container extends Component{
         let currRow;
         let curCell;
         for(let row = 0; row < rows; row++){
-            currRow = $(`<div id=\"${this.id + "-row-" + row}\" class=\"row\"></div>`);
-            currRow.addClass("w-100").addClass("justify-content-around").addClass("flex-grow-1");
+            currRow = $(`<div id=\"${this.id + "-row-" + row}\"></div>`);
+            currRow
+                .addClass("row")
+                .addClass("w-100")
+                .addClass("justify-content-around")
+                .addClass("flex-grow-1");
             this.select().append(currRow);
             for(let col = 0; col < cols; col++){
-                curCell = $(`<div id=\"${this.id + "-" + row + "-" + col}\" class=\"col\"></div>`);
-                curCell.addClass("flex-grow-1").css("align-items", "center").css("display", "flex");
+                curCell = $(`<div id=\"${this.id + "-" + row + "-" + col}\"></div>`);
+                curCell
+                    .addClass("col")
+                    .addClass("flex-grow-1")
+                    .css("align-items", "center")
+                    .css("display", "flex");
                 currRow.append(curCell);
             }
         }
@@ -108,6 +115,7 @@ class Container extends Component{
         let row = Number.parseInt(childCount / this.cols);
         let col = childCount % this.cols;
         this.children.push(component);
+        //component.select().addClass("flex-grow-1");
         
         this.selectCell(row, col).append(component.select());
     }
