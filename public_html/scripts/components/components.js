@@ -68,18 +68,18 @@ class Container extends Component{
         this.rows = rows;
         this.cols = cols;
         this.children = [];
-        
+        /*
         this.select()
             .css("align-items", "center")
             .css("display", "flex")
             .css("flex-wrap", "wrap");
-        
+        */
         //create the new grid
         let currRow;
         let curCell;
         for(let row = 0; row < rows; row++){
             currRow = $(`<div id=\"${this.id + "-row-" + row}\" class=\"row\"></div>`);
-            currRow.addClass("w-100");
+            currRow.addClass("w-100").addClass("justify-content-around");//.addClass("d-flex").addClass("flex-column");
             this.select().append(currRow);
             for(let col = 0; col < cols; col++){
                 curCell = $(`<div id=\"${this.id + "-" + row + "-" + col}\" class=\"col\"></div>`);
