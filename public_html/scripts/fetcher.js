@@ -1,5 +1,5 @@
-function tryFetch(url){
-    fetch(url)
+function tryFetch(url, opt={}){
+    fetch(url, opt)
         .then((response)=>response.text()) //since text() returns a Promise, not a string
         .then((text)=>{
             $("#result").text(text);
@@ -14,6 +14,12 @@ function tryFetch(url){
 $("#fetch")
     .click(
         ()=>{
-            tryFetch($("#url")[0].value);
+            let options = {};
+            let modeGroup = $('input[name=mode]:checked');
+            if(modeGroup.length === 1){
+                options.mode = modeGroup.val();
+            }
+            tryFetch($("#url")[0].value, options);
+            console.log(options);
         }
     );

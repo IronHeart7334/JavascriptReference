@@ -13,11 +13,6 @@
                 <h1>Fetcher</h1>
             </div>
             <div class="row">
-                <div class="col">
-                    <p id="result">results appear here</p>
-                </div>
-            </div>
-            <div class="row">
                 <div clas="col">
                     <label for="url">Enter URL to fetch:</label>
                 </div>
@@ -28,8 +23,33 @@
                 </div>
             </div>
             <div class="row">
+                <div clas="col">
+                    <form>
+                      <h2>Mode</h2>
+                      <div>
+                        <input type="radio" id="mode1" name="mode" value="cors">
+                        <label for="mode1">CORS</label>
+
+                        <input type="radio" id="mode2" name="mode" value="no-cors">
+                        <label for="mode2">no-CORS</label>
+
+                        <input type="radio" id="mode3" name="mode" value="same-origin" checked>
+                        <label for="mode3">same-origin</label>
+                        
+                        <input type="radio" id="mode3" name="mode" value="navigate">
+                        <label for="mode3">navigate</label>
+                      </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col">
                     <button id="fetch">Fetch!</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p id="result">results appear here</p>
                 </div>
             </div>
         </div>
