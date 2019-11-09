@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Fetcher</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <div id="body" class="container-fluid h-100">
+            <div class="row">
+                <h1>Fetcher</h1>
+            </div>
+            <div class="row">
+                <div clas="col">
+                    <label for="url">Enter URL to fetch:</label>
+                </div>
+            </div>
+            <div class="row">
+                <div clas="col">
+                    <input type="text" id="url" name="url" required>
+                </div>
+            </div>
+            <div class="row">
+                <div clas="col">
+                    <form>
+                      <h2>Method</h2>
+                      <div>
+                        <input type="radio" id="meth1" name="method" value="GET" checked>
+                        <label for="meth1">GET</label>
+
+                        <input type="radio" id="meth2" name="method" value="POST">
+                        <label for="meth2">POST</label>
+                      </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div clas="col">
+                    <form>
+                      <h2>Mode</h2>
+                      <div>
+                        <input type="radio" id="mode1" name="mode" value="cors">
+                        <label for="mode1">CORS</label>
+
+                        <input type="radio" id="mode2" name="mode" value="no-cors">
+                        <label for="mode2">no-CORS</label>
+
+                        <input type="radio" id="mode3" name="mode" value="same-origin" checked>
+                        <label for="mode3">same-origin</label>
+                        
+                        <input type="radio" id="mode3" name="mode" value="navigate">
+                        <label for="mode3">navigate</label>
+                      </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button id="fetch">Fetch!</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p id="result">results appear here</p>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="./scripts/fetcher.js"></script>
+    </body>
+</html>
