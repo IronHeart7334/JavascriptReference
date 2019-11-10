@@ -1,0 +1,40 @@
+#header{
+    width: 100%;
+    background-color: purple;
+    border-style: outset;
+    border-width: 20px;
+    border-color: gold;
+}
+#bg{
+    background-color: darkblue;
+}
+
+/*
+Need two seperate for transitions to work
+*/
+@keyframes turnVisible{
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+#logo{
+    width: 100%;
+    animation: 4s ease-in-out 1s 1 turnVisible;
+}
+
+#quote{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+#footer{
+    width: 100%;
+    background-color: silver;
+    border-style: inset;
+    border-width: 20px;
+    border-color: gray;
+}
