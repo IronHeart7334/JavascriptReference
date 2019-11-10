@@ -84,4 +84,4 @@ Sprite.prototype = {
     	
     	alert("Your Sprite code is now ready! \n Copy it from the console.");
     }	
-}
+};
