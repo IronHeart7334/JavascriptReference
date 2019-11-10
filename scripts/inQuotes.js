@@ -1,4 +1,4 @@
-function formatString(s){
+export function formatString(s){
 	/* 
 	@param s : a string, the string to format
 	@return an array of strings, made by 
@@ -9,13 +9,12 @@ function formatString(s){
 		formatString("a, b, c, 'd, e'");
 		-> ["a", "b", "c", ["d", "e"]]
 	*/
-	"use strict";
-	var ret = [];
-	var inQuotes = false;
-	var endQuotes = false; // the current index had a quote mark
-	var arrayIndex = -1;
-	var split = s.split(",");
-	for(var i = 0; i < split.length; i++){
+	let ret = [];
+	let inQuotes = false;
+	let endQuotes = false; // the current index had a quote mark
+	let arrayIndex = -1;
+	let split = s.split(",");
+	for(let i = 0; i < split.length; i++){
 		split[i] = split[i].trim();
 		endQuotes = false;	
 		if(split[i][0] === '"' || split[i][0] === "'"){

@@ -1,4 +1,4 @@
-function expand(array){
+export function expand(array){
 	/*
     @param array : an array that we want to expand
 	@return an array : each of the rows resulting from array expansion
