@@ -1,18 +1,18 @@
 <!doctype html>
 <html>
 	<head>
-		<script src="../scripts/sprite_function.js"></script>
+		<script src="./script/sprite_function.js"></script>
 		<script>
 		    //construct is used to set up the buttons used by the program
             function construct(){
                 var w = parseInt(prompt("How many columns do you want your sprite to have?"));
                 var h = parseInt(prompt("What about rows?"));
-                
+
                 var p = new ProtoSprite(w, h);
                 document.getElementById("addColor").onclick = p.addColor.bind(p);
                 // implement removeColor later
                 document.getElementById("genSprite").onclick = p.generateCode.bind(p);
-                
+
                 for (var column = 0; column < w; column ++){
                     for (var row = 0; row < h; row ++){
                         new Pixel(column, row, p);
@@ -34,12 +34,12 @@
                 },
                 generateCode:function(){
                     var map = new Array(this.h);
-        
+
                     for(var i2 = 0; i2 < this.h; i2++){
                         var row = new Array(this.w);
                         map[i2] = row;
                     }
-        
+
                     var curPix;
                     for(var i = 0; i < this.pixels.length; i++){
                         curPix = this.pixels[i];
@@ -95,7 +95,7 @@
             }
 		</script>
 	</head>
-	
+
 	<body>
 		<div style="position:absolute; left:0px; top:0px; height:10%; width:33%; background-color:blue;" id="createSprite" onclick="construct()"><p>Create a new sprite</p></div>
 		<div style="position:absolute; left:33%; top:0px; height:10%; width:33%; background-color:yellow;" id="addColor"><p>Add a color</p></div>

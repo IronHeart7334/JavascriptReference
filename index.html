@@ -5,12 +5,26 @@
         <title>Javascript Reference</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+            function populateProjectList(){
+                fetch("projects/projects.txt").then((response)=>{
+                    return response.text();
+                }).then((text)=>{
+                    let projects = text.trim().split("\n");
+                    let body = document.getElementById("body");
+                    let child;
+                    for(let project of projects){
+                        console.log(project);
+                        child = document.createElement("a");
+                        child.href = `./projects/${project}/index.html`;
+                        child.innerHTML = project;
+                        body.appendChild(child);
+                    }
+                });
+            }
+        </script>
     </head>
-    <body>
-        <a href="./html/expand.html">Array Expander</a>
-        <a href="./html/components.html">JsGuiApi</a>
-        <a href="./html/qitSplashPage.html">Quantum Insurance Technology Splash Page</a>
+    <body onload="populateProjectList()" id="body">
         <a href="./html/sprite_canvas.html">Sprite Function</a>
-        <a href="./html/fetcher.html">Fetcher</a>
     </body>
 </html>
